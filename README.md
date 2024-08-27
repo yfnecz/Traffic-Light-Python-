@@ -11,11 +11,11 @@ When the user provided input for initial settings (both the number of roads and 
 - Increases the variable that corresponds to the amount of time since the "system startup" each second (1000 milliseconds);
 - (if in System state) Prints the system information.
 
-By choosing 3 option in Menu, the program switches to the System state, and the main thread waits for input from the user. To return to the Menu state, the user should press Enter, in other words, an empty string should be provided as input.
-
 The program first welcomes the user and prompts them to input the number of roads and the interval between the opening and closing of each road. Then the control panel with menu is displayed.
 
-Let's consider a scenario where we want to control 4 roads, with an interval of 8 seconds. We add all the roads sequentially via the 1. Add option: "First", "Second", "Third", "Fourth". After all the roads are added and the interval has been specified, we can start our system with 3. System:
+By choosing 3 option in Menu, the program switches to the System state, and the main thread waits for input from the user. To return to the Menu state, the user should press Enter.
+
+Let's consider a scenario where we want to control 4 roads, with an interval of 8 seconds. We add all the roads sequentially via the "1. Add" option: "First", "Second", "Third", "Fourth". After all the roads are added and the interval has been specified, we can start our system with "3. System":
 ```
 ! 11s. have passed since system startup !
 ! Number of roads: 4 !
@@ -29,7 +29,7 @@ Road "Fourth" will be closed for 24s.
 ! Press "Enter" to open menu !
 ```
 
-The roads are managed using a circular queue, where the road at the front of the queue is open, and the rest are closed. In this case, "First" was added first, so it is also the first to be open. It will remain open for the specified interval of 8 seconds before switching to the next road in line. So, "Second" will open after "First" in 8 seconds, "Third" will open after "Second" in 16 seconds, and "Fourth" will open after "Third" in 24 seconds.
+The roads are "connected" in a circular queue, where the road at the front of the queue is open, and the rest are closed. In this case, "First" was added first, so it is also the first to be open. It will remain open for the specified interval of 8 seconds before switching to the next road in line. So, "Second" will open after "First" in 8 seconds, "Third" will open after "Second" in 16 seconds, and "Fourth" will open after "Third" in 24 seconds.
 
 For example, if the remaining time for "First" is 1 second, the system will display:
 ```
@@ -49,9 +49,9 @@ Road "Fourth" will be closed for 16s.
 
 If the opened road is deleted, there will be no roads in state open until the next one opens.
 
-If the only road that exists is the opened one - it will never close (its state should be always open), but still will count down the time to close.
+If the only road that exists is the opened one - it will never close (its state will always stay open), but still will count down the time to close.
 
-When there are no roads in the system, the next added road must be open for an interval.
+When there are no roads in the system, the next added road will be open for an interval.
 
 
 
