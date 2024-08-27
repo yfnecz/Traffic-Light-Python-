@@ -7,11 +7,11 @@ The program has three possible states:
 - Menu — the state that shows possible options and processes the user's input;
 - System — the state that shows the user information about the traffic light, such as time from startup and the number of roads, etc.
 
+The program first welcomes the user and prompts them to input the number of roads and the interval between the opening and closing of each road. Then the control panel with menu is displayed.
+
 When the user provided input for initial settings (both the number of roads and the interval), a new thread QueueThread is created to implement the System state, this newly-created thread performs these actions each second:
 - Increases the variable that corresponds to the amount of time since the "system startup" each second (1000 milliseconds);
 - (if in System state) Prints the system information.
-
-The program first welcomes the user and prompts them to input the number of roads and the interval between the opening and closing of each road. Then the control panel with menu is displayed.
 
 By choosing 3 option in Menu, the program switches to the System state, and the main thread waits for input from the user. To return to the Menu state, the user should press Enter.
 
